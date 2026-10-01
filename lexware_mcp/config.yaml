@@ -1,0 +1,27 @@
+name: "Lexware Office MCP"
+version: "0.1.0"
+slug: "lexware_mcp"
+description: "Private Lexware Office MCP server for ChatGPT via a separate Secure MCP Tunnel."
+url: "https://github.com/niki11euro/home-assistant-lexware-mcp"
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: manual_only
+stage: experimental
+ports:
+  8080/tcp: null
+ports_description:
+  8080/tcp: "Internal MCP endpoint. Host mapping intentionally disabled."
+options:
+  lexware_api_key: null
+  mcp_auth_token: null
+  write_enabled: false
+  finalize_enabled: false
+  url_upload_enabled: false
+schema:
+  lexware_api_key: password
+  mcp_auth_token: "password"
+  write_enabled: bool
+  finalize_enabled: bool
+  url_upload_enabled: bool

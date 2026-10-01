@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- clarify that this is a community Home Assistant wrapper around OpenAI's official tunnel-client
+- preserve upstream Apache-2.0 LICENSE and NOTICE in the image
+- validate AMD64 and ARM64 builds in GitHub Actions
+
 ## 0.1.0
 
 Initial preparation release.

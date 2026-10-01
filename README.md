@@ -1,8 +1,8 @@
 # Home Assistant Lexware MCP
 
-> This repository was prepared with ChatGPT.
+> This project was created with ChatGPT.
 
-Private preparation repository for running a Lexware Office MCP server and the official OpenAI Secure MCP Tunnel as separate Home Assistant Apps.
+Home Assistant App repository for running a Lexware Office MCP server and the official OpenAI Secure MCP Tunnel as separate Apps.
 
 ## Current status
 
@@ -57,7 +57,7 @@ When this repository is ready to install, use this exact URL without `.git`:
 
 The tunnel App's default local MCP hostname is derived from exactly this repository URL.
 
-> Important: Home Assistant Supervisor must be able to clone the repository. Keep the repository private while reviewing it. Before adding it to Home Assistant, either make it anonymously reachable or use a supported local-installation workflow. Do not put GitHub credentials into the repository URL.
+> Important: Home Assistant Supervisor must be able to clone this repository for normal repository-based installation, updates, reinstalls, and recovery. The repository is designed to contain no runtime secrets. Do not put GitHub credentials into the repository URL.
 
 ## Secrets
 
@@ -75,3 +75,15 @@ See [REVERSIBILITY.md](REVERSIBILITY.md) before installation.
 - OpenAI Secure MCP Tunnel: https://github.com/openai/tunnel-client
 
 Licenses are preserved in each App's `LICENSES` directory.
+
+## Licensing and affiliation
+
+The wrapper/integration code in this repository is licensed under the MIT License. Third-party projects retain their own licenses and notices.
+
+See:
+
+- [LICENSE](LICENSE)
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+- [SECURITY.md](SECURITY.md)
+
+This is an independent community integration and is not an official Lexware, OpenAI, or Home Assistant project.

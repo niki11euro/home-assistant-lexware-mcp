@@ -54,6 +54,7 @@ export LEXWARE_ENABLE_URL_UPLOAD
 export HA_DISABLE_UPLOAD_TICKETS
 export PORT=8080
 export LEXWARE_DEBUG_LOGGING=false
+export NODE_ENV=production
 
 echo "[lexware-mcp] Starting. read_only=$LEXWARE_READ_ONLY drafts=$LEXWARE_ENABLE_DRAFTS finalize=$LEXWARE_ENABLE_FINALIZE url_upload=$LEXWARE_ENABLE_URL_UPLOAD"
 exec node /app/lexware-mcp/dist/server.js

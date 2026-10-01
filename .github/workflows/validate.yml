@@ -68,7 +68,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: false
           build-args: |
-            BUILD_VERSION=0.1.0
+            BUILD_VERSION=0.1.1
             BUILD_ARCH=${{ matrix.arch }}
 
 
@@ -81,7 +81,7 @@ jobs:
       - name: Build Lexware wrapper image
         run: |
           docker build \
-            --build-arg BUILD_VERSION=0.1.0 \
+            --build-arg BUILD_VERSION=0.1.1 \
             --build-arg BUILD_ARCH=amd64 \
             -t lexware-ha-smoke ./lexware_mcp
 
@@ -124,7 +124,7 @@ jobs:
       - name: Verify OpenAI tunnel binary exists in wrapper image
         run: |
           docker build \
-            --build-arg BUILD_VERSION=0.1.0 \
+            --build-arg BUILD_VERSION=0.1.1 \
             --build-arg BUILD_ARCH=amd64 \
             -t openai-tunnel-ha-smoke ./openai_mcp_tunnel
           docker run --rm \

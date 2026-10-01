@@ -9,9 +9,12 @@ RUN git clone https://github.com/marselsel/Lexware-MCP-Server.git source \
     && cd source \
     && git checkout "$LEXWARE_MCP_COMMIT" \
     && sed -i 's/registerUploadTools(server, uploadTickets, config.publicBaseUrl);/if (process.env.HA_DISABLE_UPLOAD_TICKETS !== "true") registerUploadTools(server, uploadTickets, config.publicBaseUrl);/' src/tools/index.ts \
+    && node -e 'const fs=require("fs"); const p=JSON.parse(fs.readFileSync("package.json","utf8")); p.overrides={"brace-expansion":"5.0.12","filelist":{"brace-expansion":"2.1.7"},"ip-address":"10.7.2"}; fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\\n")' \
+    && npm install --package-lock-only --ignore-scripts \
     && npm ci \
     && npm run build \
-    && npm prune --omit=dev
+    && npm prune --omit=dev \
+    && npm audit --omit=dev --audit-level=moderate
 
 FROM node:24.14.1-alpine
 

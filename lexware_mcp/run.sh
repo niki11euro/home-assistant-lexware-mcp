@@ -19,11 +19,9 @@ MCP_AUTH_TOKEN="$(jq -er '.mcp_auth_token' "$CONFIG_PATH")" || fail "mcp_auth_to
 
 WRITE_ENABLED="$(jq -r '.write_enabled // false' "$CONFIG_PATH")"
 FINALIZE_ENABLED="$(jq -r '.finalize_enabled // false' "$CONFIG_PATH")"
-URL_UPLOAD_ENABLED="$(jq -r '.url_upload_enabled // false' "$CONFIG_PATH")"
 
 case "$WRITE_ENABLED" in true|false) ;; *) fail "write_enabled must be true or false" ;; esac
 case "$FINALIZE_ENABLED" in true|false) ;; *) fail "finalize_enabled must be true or false" ;; esac
-case "$URL_UPLOAD_ENABLED" in true|false) ;; *) fail "url_upload_enabled must be true or false" ;; esac
 
 if [ "$WRITE_ENABLED" != "true" ]; then
   LEXWARE_READ_ONLY=true

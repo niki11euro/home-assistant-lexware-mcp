@@ -45,14 +45,19 @@ OpenAI tunnel-client:
 - `openai_mcp_tunnel/run.sh`: POSIX shell syntax check successful
 - OpenAI tunnel-client v0.0.15 existence verified from the official OpenAI GitHub release
 - Linux ARM64 availability verified in the official release documentation
+- GitHub Actions syntax validation: successful
+- Lexware MCP image build for Linux AMD64: successful
+- Lexware MCP image build for Linux ARM64/aarch64: successful
+- OpenAI Secure MCP Tunnel image build for Linux AMD64: successful
+- OpenAI Secure MCP Tunnel image build for Linux ARM64/aarch64: successful
 
-## Validation not yet completed
+Automated validation workflow:
 
-A full Docker image build has not yet been executed.
+`.github/workflows/validate.yml`
 
-Reason: the current preparation runtime does not provide Docker or Podman.
+Validated workflow run:
 
-This must be completed before calling version 0.1.0 production-ready. It can be done with a suitable Docker environment or during a controlled Home Assistant App build before either App is ever started.
+`36888772356`
 
 ## Home Assistant status
 

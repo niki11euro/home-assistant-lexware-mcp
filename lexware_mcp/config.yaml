@@ -1,5 +1,5 @@
 name: "Lexware Office MCP"
-version: "0.1.0"
+version: "0.1.1"
 slug: "lexware_mcp"
 description: "Private Lexware Office MCP server for ChatGPT via a separate Secure MCP Tunnel."
 url: "https://github.com/niki11euro/home-assistant-lexware-mcp"

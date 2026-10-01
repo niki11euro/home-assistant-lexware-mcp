@@ -8,7 +8,7 @@ This document records the checks performed before changing this repository from 
 
 Result: PASS
 
-The current repository contains 30 files.
+The repository source tree was scanned before public release, including the complete App source, documentation, license files, and workflow configuration.
 
 Checked for:
 
@@ -137,13 +137,19 @@ Added:
 
 ## Runtime/build validation
 
-Current status: PARTIAL
+Result: PASS
 
-Configuration and shell syntax checks were completed previously.
+GitHub Actions workflow `36888772356` completed successfully.
 
-A complete container build has not yet been executed in the preparation environment because Docker/Podman was not available there.
+Successful checks:
 
-This does not affect privacy or license readiness for making the source repository public, but a successful container build is still required before the Apps should be treated as production-ready.
+- repository/shell syntax validation
+- Lexware MCP build for Linux AMD64
+- Lexware MCP build for Linux ARM64/aarch64
+- OpenAI Secure MCP Tunnel build for Linux AMD64
+- OpenAI Secure MCP Tunnel build for Linux ARM64/aarch64
+
+The ARM64 builds cover the architecture intended for the Raspberry Pi deployment.
 
 ## Public repository conclusion
 

@@ -18,10 +18,8 @@ options:
   mcp_auth_token: null
   write_enabled: false
   finalize_enabled: false
-  url_upload_enabled: false
 schema:
   lexware_api_key: password
   mcp_auth_token: "password"
   write_enabled: bool
   finalize_enabled: bool
-  url_upload_enabled: bool

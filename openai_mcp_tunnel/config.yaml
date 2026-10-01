@@ -1,7 +1,7 @@
 name: "OpenAI Secure MCP Tunnel"
 version: "0.1.0"
 slug: "openai_mcp_tunnel"
-description: "Official OpenAI Secure MCP Tunnel client for a private Home Assistant-hosted MCP server."
+description: "Community Home Assistant wrapper for the OpenAI Secure MCP Tunnel client."
 url: "https://github.com/niki11euro/home-assistant-lexware-mcp"
 arch:
   - aarch64

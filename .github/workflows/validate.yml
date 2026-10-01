@@ -70,3 +70,67 @@ jobs:
           build-args: |
             BUILD_VERSION=0.1.0
             BUILD_ARCH=${{ matrix.arch }}
+
+
+  runtime-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Lexware wrapper image
+        run: |
+          docker build \
+            --build-arg BUILD_VERSION=0.1.0 \
+            --build-arg BUILD_ARCH=amd64 \
+            -t lexware-ha-smoke ./lexware_mcp
+
+      - name: Start Lexware wrapper read-only with dummy credentials
+        run: |
+          mkdir -p smoke-data
+          cat > smoke-data/options.json <<'JSON'
+          {
+            "lexware_api_key": "dummy-lexware-key-for-runtime-smoke-test",
+            "mcp_auth_token": "0123456789abcdef0123456789abcdef",
+            "write_enabled": false,
+            "finalize_enabled": false
+          }
+          JSON
+          docker run -d \
+            --name lexware-ha-smoke \
+            -p 127.0.0.1:18080:8080 \
+            -v "$PWD/smoke-data:/data:ro" \
+            lexware-ha-smoke
+
+      - name: Verify status endpoint and MCP authentication gate
+        run: |
+          set -eu
+          ok=0
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:18080/status >/dev/null; then
+              ok=1
+              break
+            fi
+            sleep 1
+          done
+          test "$ok" = "1"
+
+          code="$(curl -sS -o /tmp/mcp-response.txt -w '%{http_code}' \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"smoke","version":"1"}}}' \
+            http://127.0.0.1:18080/mcp)"
+          test "$code" = "401"
+
+      - name: Verify OpenAI tunnel binary exists in wrapper image
+        run: |
+          docker build \
+            --build-arg BUILD_VERSION=0.1.0 \
+            --build-arg BUILD_ARCH=amd64 \
+            -t openai-tunnel-ha-smoke ./openai_mcp_tunnel
+          docker run --rm \
+            --entrypoint /usr/bin/tunnel-client \
+            openai-tunnel-ha-smoke --version
+
+      - name: Show logs on failure
+        if: failure()
+        run: docker logs lexware-ha-smoke || true

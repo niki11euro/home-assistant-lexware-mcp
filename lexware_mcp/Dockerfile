@@ -27,6 +27,8 @@ RUN apk add --no-cache ca-certificates jq
 
 WORKDIR /app
 COPY --from=builder /build/source /app/lexware-mcp
+COPY --from=builder /build/source/LICENSE /licenses/lexware-mcp/LICENSE
+COPY LICENSES/WRAPPER_MIT.txt /licenses/home-assistant-lexware-wrapper/LICENSE
 COPY run.sh /run.sh
 
 RUN chmod 0755 /run.sh

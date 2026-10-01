@@ -2,7 +2,7 @@
 
 > This project was created with ChatGPT.
 
-Home Assistant App repository for running a Lexware Office MCP server and the official OpenAI Secure MCP Tunnel as separate Apps.
+Home Assistant App repository for running a Lexware Office MCP server and a Home Assistant wrapper around OpenAI's official tunnel-client as separate Apps.
 
 ## Current status
 

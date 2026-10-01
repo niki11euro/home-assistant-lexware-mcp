@@ -50,14 +50,16 @@ OpenAI tunnel-client:
 - Lexware MCP image build for Linux ARM64/aarch64: successful
 - OpenAI Secure MCP Tunnel image build for Linux AMD64: successful
 - OpenAI Secure MCP Tunnel image build for Linux ARM64/aarch64: successful
+- Lexware runtime smoke test (`/status` + protected `/mcp`): successful
+- production dependency audit: 0 vulnerabilities after wrapper security overrides
 
 Automated validation workflow:
 
 `.github/workflows/validate.yml`
 
-Validated workflow run:
+Latest fully validated workflow run:
 
-`36888772356`
+`36891487758`
 
 ## Home Assistant status
 
@@ -84,7 +86,7 @@ The existing Home Assistant MCP installation is not modified.
 
 ## Next boundary
 
-The next Home Assistant-related action, when explicitly approved, should be repository registration only.
+The repository is already registered in the target Home Assistant instance. The next controlled step is to refresh the App Store metadata and update the installed Apps to version 0.1.1 without starting them automatically.
 
 Before that action, decide whether to:
 

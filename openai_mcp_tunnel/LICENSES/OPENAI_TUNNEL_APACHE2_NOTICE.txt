@@ -1,8 +1,0 @@
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-Copyright terms and full license text are provided by the upstream project:
-https://github.com/openai/tunnel-client/blob/master/LICENSE
-
-This wrapper redistributes/derives from the official OpenAI tunnel-client container under Apache-2.0.

@@ -1,0 +1,30 @@
+# Local environment and runtime secrets
+.env
+.env.*
+*.env
+options.json
+secrets.yaml
+secrets*.yaml
+*.secret
+*.secrets
+*.token
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Local Home Assistant / runtime data
+data/
+addon_config/
+addon_configs/
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Build artifacts
+node_modules/
+dist/
+build/
+*.log

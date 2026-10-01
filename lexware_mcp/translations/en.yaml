@@ -1,0 +1,18 @@
+configuration:
+  lexware_api_key:
+    name: "Lexware API key"
+    description: "Lexware Office Public API key. Stored only in this App's configuration. Never commit this value to Git."
+  mcp_auth_token:
+    name: "MCP authentication token"
+    description: "Local bearer token protecting /mcp. Enter the same token in the OpenAI Secure MCP Tunnel App."
+  write_enabled:
+    name: "Allow write and draft tools"
+    description: "Off by default. Requires an App restart after changing."
+  finalize_enabled:
+    name: "Allow finalize and irreversible tools"
+    description: "Off by default. Effective only while write tools are enabled. Requires an App restart after changing."
+  url_upload_enabled:
+    name: "Server-side URL upload"
+    description: "Reserved for a later version. Version 0.1.0 keeps this disabled."
+network:
+  8080/tcp: "Internal MCP endpoint. Host mapping is disabled."

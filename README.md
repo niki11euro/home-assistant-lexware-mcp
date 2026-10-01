@@ -1,5 +1,7 @@
 # Home Assistant Lexware MCP
 
+> This repository was prepared with ChatGPT.
+
 Private preparation repository for running a Lexware Office MCP server and the official OpenAI Secure MCP Tunnel as separate Home Assistant Apps.
 
 ## Current status

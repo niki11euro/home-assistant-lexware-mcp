@@ -11,8 +11,5 @@ configuration:
   finalize_enabled:
     name: "Allow finalize and irreversible tools"
     description: "Off by default. Effective only while write tools are enabled. Requires an App restart after changing."
-  url_upload_enabled:
-    name: "Server-side URL upload"
-    description: "Reserved for a later version. Version 0.1.0 keeps this disabled."
 network:
   8080/tcp: "Internal MCP endpoint. Host mapping is disabled."

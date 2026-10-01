@@ -139,7 +139,7 @@ Added:
 
 Result: PASS
 
-GitHub Actions workflow `36888772356` completed successfully.
+GitHub Actions workflow `36891487758` completed successfully.
 
 Successful checks:
 
@@ -148,6 +148,8 @@ Successful checks:
 - Lexware MCP build for Linux ARM64/aarch64
 - OpenAI Secure MCP Tunnel build for Linux AMD64
 - OpenAI Secure MCP Tunnel build for Linux ARM64/aarch64
+- Lexware runtime smoke test (`/status` and unauthenticated `/mcp` rejection)
+- production dependency audit with 0 vulnerabilities after wrapper security overrides
 
 The ARM64 builds cover the architecture intended for the Raspberry Pi deployment.
 

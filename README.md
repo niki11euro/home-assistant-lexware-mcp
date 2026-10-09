@@ -1,89 +1,40 @@
-# Home Assistant Lexware MCP
+# Home Assistant Lexware Office MCP
 
-> This project was created with ChatGPT.
+Home Assistant App repository for a Lexware Office MCP endpoint. This repository only installs the Lexware backend. **OpenAI Secure MCP Tunnels** are managed by the independent multi-target App in [home-assistant-icloud-mcp](https://github.com/niki11euro/home-assistant-icloud-mcp), which can connect this backend with its own Lexware tunnel identity.
 
-Home Assistant App repository for running a Lexware Office MCP server and a Home Assistant wrapper around OpenAI's official tunnel-client as separate Apps.
-
-## Current status
-
-This repository only prepares installation artifacts. Nothing in this repository changes Home Assistant by itself.
-
-Both Apps are configured with `boot: manual_only`. Installing them does not start them automatically.
-
-## Apps
+## App
 
 ### Lexware Office MCP
 
-Wraps the MIT-licensed `marselsel/Lexware-MCP-Server` project pinned to commit:
+Wraps the MIT-licensed `marselsel/Lexware-MCP-Server` project, pinned to commit `8da792d08146665036943a9ee7d1b7f444225939`.
 
-`8da792d08146665036943a9ee7d1b7f444225939`
+- Authenticated internal `/mcp` endpoint, port 8080
+- Lexware API key remains in this App, not in the shared tunnel
+- Separate MCP bearer token, forwarded by the shared tunnel
+- Read-only tools by default
+- Draft/write tools and finalization are separately opt-in
+- URL upload disabled
+- No Home Assistant API, Supervisor API, or host-network permissions
+- No host port published by default
 
-Default security mode:
+## Installation and startup
 
-- Read tools: enabled
-- Write / draft tools: disabled
-- Finalize / irreversible tools: disabled
-- URL upload: disabled
-- MCP endpoint protected by a separate bearer token
-- No host network
-- No Home Assistant API access
-- No Supervisor API access
-- No host port published
-
-Required secrets are entered only in the Home Assistant App configuration:
-
-- Lexware API key
-- Local MCP authentication token
-
-### OpenAI Secure MCP Tunnel
-
-Wraps the official `openai/tunnel-client` container pinned to release:
-
-`v0.0.15`
-
-The tunnel uses outbound HTTPS to the OpenAI control plane and forwards requests to the local Lexware MCP server.
-
-Required secrets are entered only in the Home Assistant App configuration:
-
-- OpenAI Tunnel ID
-- OpenAI Runtime API key
-- The same local MCP authentication token used by the Lexware App
-
-## Repository URL for Home Assistant
-
-When this repository is ready to install, use this exact URL without `.git`:
+Register this App repository:
 
 `https://github.com/niki11euro/home-assistant-lexware-mcp`
 
-The tunnel App's default local MCP hostname is derived from exactly this repository URL.
+Install the Lexware Office MCP App and configure the Lexware API key and local MCP bearer token.
 
-> Important: Home Assistant Supervisor must be able to clone this repository for normal repository-based installation, updates, reinstalls, and recovery. The repository is designed to contain no runtime secrets. Do not put GitHub credentials into the repository URL.
+The App defaults to `boot: manual`: it is **not** started automatically after installation. Home Assistant allows enabling **Start on boot** later.
 
-## Secrets
+Use the existing Lexware OpenAI tunnel ID and runtime key in a **Lexware Office** entry inside the multi-target tunnel App from the separate repository. The corresponding `mcp_server_url` is the installed Lexware backend's internal Home Assistant hostname and `/mcp` path. The tunnel App receives the MCP bearer token, not the Lexware API key.
 
-No API key or token belongs in Git.
+Do not mix private iCloud data or credentials with the Lexware MCP backend. Shared tunnel infrastructure uses separate tunnel identities and per-target credentials.
 
-Home Assistant stores App configuration in the App's own persistent data area and exposes password fields masked in the UI. These values are still sensitive configuration and can be included in backups. Treat Home Assistant backups as secrets.
+## Security and rollback
 
-## Reversibility
+Never put credentials in Git. Home Assistant backups may contain App option secrets, so protect backups.
 
-See [REVERSIBILITY.md](REVERSIBILITY.md) before installation.
+See [SECURITY.md](SECURITY.md), [REVERSIBILITY.md](REVERSIBILITY.md), and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-## Upstream projects
-
-- Lexware MCP: https://github.com/marselsel/Lexware-MCP-Server
-- OpenAI Secure MCP Tunnel: https://github.com/openai/tunnel-client
-
-Licenses are preserved in each App's `LICENSES` directory.
-
-## Licensing and affiliation
-
-The wrapper/integration code in this repository is licensed under the MIT License. Third-party projects retain their own licenses and notices.
-
-See:
-
-- [LICENSE](LICENSE)
-- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
-- [SECURITY.md](SECURITY.md)
-
-This is an independent community integration and is not an official Lexware, OpenAI, or Home Assistant project.
+This is an independent community integration, not an official Lexware or OpenAI product.

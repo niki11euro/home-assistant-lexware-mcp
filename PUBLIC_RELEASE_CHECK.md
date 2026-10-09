@@ -1,3 +1,5 @@
+> Historical verification record, dated 2026-10-01. It describes the earlier two-App release. The standalone OpenAI tunnel App has since been retired in favor of the shared tunnel App in a separate repository. References to deleted files below document the past release, not the current repository structure.
+
 # Public release check
 
 Date: 2026-10-01

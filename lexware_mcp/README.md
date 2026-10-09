@@ -4,7 +4,7 @@ Private Home Assistant wrapper around `marselsel/Lexware-MCP-Server`.
 
 Security defaults:
 
-- manual start only
+- manual start by default, with optional Start on boot
 - read only
 - no finalize tools
 - no URL upload

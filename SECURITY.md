@@ -37,3 +37,9 @@ The Lexware MCP host port is not published to the Home Assistant host.
 ## Reporting
 
 If a credential is ever committed accidentally, deleting it in a later commit is not sufficient because Git history remains public. Revoke/rotate the credential immediately and rewrite repository history before publishing or continuing public use.
+
+## Shared tunnel architecture
+
+The OpenAI Secure MCP Tunnel wrapper is maintained in the separate iCloud MCP App repository. Its Lexware entry must have a dedicated tunnel ID, runtime API key and MCP bearer token. Only the Lexware Office MCP App should have the Lexware API key.
+
+Be aware that the shared tunnel App administrator can inspect multiple endpoints' runtime secrets. Keep Home Assistant administrative access restricted and do not reuse credentials across personal and business targets.

@@ -21,13 +21,11 @@ jobs:
       - name: Validate shell syntax
         run: |
           sh -n lexware_mcp/run.sh
-          sh -n openai_mcp_tunnel/run.sh
 
       - name: Validate required repository files
         run: |
           test -f repository.yaml
           test -f lexware_mcp/config.yaml
-          test -f openai_mcp_tunnel/config.yaml
           test -f LICENSE
           test -f THIRD_PARTY_NOTICES.md
 
@@ -41,12 +39,6 @@ jobs:
             platform: linux/amd64
             arch: amd64
           - app: lexware_mcp
-            platform: linux/arm64
-            arch: aarch64
-          - app: openai_mcp_tunnel
-            platform: linux/amd64
-            arch: amd64
-          - app: openai_mcp_tunnel
             platform: linux/arm64
             arch: aarch64
 
@@ -68,7 +60,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: false
           build-args: |
-            BUILD_VERSION=0.1.1
+            BUILD_VERSION=0.1.2
             BUILD_ARCH=${{ matrix.arch }}
 
 
@@ -81,7 +73,7 @@ jobs:
       - name: Build Lexware wrapper image
         run: |
           docker build \
-            --build-arg BUILD_VERSION=0.1.1 \
+            --build-arg BUILD_VERSION=0.1.2 \
             --build-arg BUILD_ARCH=amd64 \
             -t lexware-ha-smoke ./lexware_mcp
 
@@ -120,16 +112,6 @@ jobs:
             -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"smoke","version":"1"}}}' \
             http://127.0.0.1:18080/mcp)"
           test "$code" = "401"
-
-      - name: Verify OpenAI tunnel binary exists in wrapper image
-        run: |
-          docker build \
-            --build-arg BUILD_VERSION=0.1.1 \
-            --build-arg BUILD_ARCH=amd64 \
-            -t openai-tunnel-ha-smoke ./openai_mcp_tunnel
-          docker run --rm \
-            --entrypoint /usr/bin/tunnel-client \
-            openai-tunnel-ha-smoke --version
 
       - name: Show logs on failure
         if: failure()

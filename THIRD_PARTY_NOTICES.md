@@ -42,35 +42,10 @@ The container build runs `npm audit --omit=dev --audit-level=moderate` after pru
 
 The upstream MIT license permits modification and redistribution provided its copyright and permission notice are retained. The upstream license file remains in the cloned source and is also copied to the resulting image's license directory.
 
-## OpenAI Secure MCP Tunnel
-
-Upstream project:
-
-https://github.com/openai/tunnel-client
-
-Pinned release used by the tunnel Home Assistant App:
-
-`v0.0.15`
-
-Upstream license:
-
-Apache License 2.0
-
-The complete Apache License 2.0 text is preserved at:
-
-`openai_mcp_tunnel/LICENSES/OPENAI_TUNNEL_APACHE2_FULL.txt`
-
-The upstream NOTICE file is preserved verbatim at:
-
-`openai_mcp_tunnel/LICENSES/OPENAI_TUNNEL_NOTICE.txt`
-
-The wrapper uses the official OpenAI container as its base image and adds Home Assistant startup/configuration glue. It does not claim ownership of the OpenAI tunnel-client code. The Apache license and NOTICE are copied into the resulting wrapper image.
-
 ## Dependencies
 
 The Lexware upstream project installs its dependencies from its pinned lockfile during the image build. Those packages retain their respective upstream licenses. Their license files remain subject to the packages' own terms.
 
-The OpenAI base image similarly contains dependencies distributed by its upstream project under their respective licenses.
 
 ## Trademarks and affiliation
 

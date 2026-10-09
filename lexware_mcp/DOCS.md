@@ -24,7 +24,7 @@ Do not put the key in Git.
 
 Create a random token with at least 16 characters. Use a long random value.
 
-The exact same value must later be entered in the OpenAI Secure MCP Tunnel App as `MCP authentication token`.
+The exact same value must later be entered in the shared OpenAI Secure MCP Tunnels App as `MCP authentication token`.
 
 This token protects the local `/mcp` endpoint even though no host port is exposed.
 
@@ -68,7 +68,7 @@ If `write_enabled` is false, finalization is forcibly disabled regardless of the
 
 ## Applying permission changes
 
-Version 0.1.0 reads the permission options at process startup.
+The current version reads the permission options at process startup.
 
 After changing Write or Finalize in the App configuration, restart this App for the new tool set to take effect.
 
@@ -80,7 +80,7 @@ The upstream short-lived browser upload-ticket flow is intentionally disabled in
 
 Normal inline MCP file functionality from the upstream project remains available where supported.
 
-Server-side URL upload is also disabled in version 0.1.0.
+Server-side URL upload remains disabled.
 
 ## Networking
 
@@ -102,6 +102,6 @@ Do not guess the repository ID. Read it from Home Assistant after repository reg
 
 This App declares:
 
-`boot: manual_only`
+`boot: manual`
 
-It will not automatically start at Home Assistant boot and Home Assistant will not allow changing it to automatic boot while this repository is in the preparation phase.
+The App will not start automatically after installation. The user may later enable **Start on boot** in Home Assistant.

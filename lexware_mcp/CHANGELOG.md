@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Permit opt-in Home Assistant Start on boot while keeping manual as the installation default.
+- Migrate tunnel handling to the shared multi-target Home Assistant tunnel App in the separate iCloud MCP repository.
+
+
 ## 0.1.1
 
 - run Lexware MCP with NODE_ENV=production

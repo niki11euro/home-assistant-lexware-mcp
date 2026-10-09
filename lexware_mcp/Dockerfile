@@ -4,12 +4,14 @@ ARG LEXWARE_MCP_COMMIT=8da792d08146665036943a9ee7d1b7f444225939
 
 RUN apk add --no-cache git
 
+# Shared and reviewable production dependency policy used in CI and in this image.
 WORKDIR /build
+COPY security-overrides.json /build/security-overrides.json
 RUN git clone https://github.com/marselsel/Lexware-MCP-Server.git source \
     && cd source \
     && git checkout "$LEXWARE_MCP_COMMIT" \
     && sed -i 's/registerUploadTools(server, uploadTickets, config.publicBaseUrl);/if (process.env.HA_DISABLE_UPLOAD_TICKETS !== "true") registerUploadTools(server, uploadTickets, config.publicBaseUrl);/' src/tools/index.ts \
-    && node -e 'const fs=require("fs"); const p=JSON.parse(fs.readFileSync("package.json","utf8")); p.overrides={"brace-expansion":"5.0.12","filelist":{"brace-expansion":"2.1.7"},"ip-address":"10.7.2"}; fs.writeFileSync("package.json",JSON.stringify(p,null,2)+String.fromCharCode(10))' \
+    && node -e 'const fs=require("fs"); const p=JSON.parse(fs.readFileSync("package.json","utf8")); p.overrides=JSON.parse(fs.readFileSync("/build/security-overrides.json","utf8")); fs.writeFileSync("package.json",JSON.stringify(p,null,2)+String.fromCharCode(10))' \
     && npm install --package-lock-only --ignore-scripts \
     && npm ci \
     && npm run build \

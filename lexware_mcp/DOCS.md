@@ -105,3 +105,11 @@ This App declares:
 `boot: manual`
 
 The App will not start automatically after installation. The user may later enable **Start on boot** in Home Assistant.
+
+## Pinned production dependency security policy
+
+The Docker build and GitHub Actions dependency audit use the same `security-overrides.json` file to apply reviewed, exact transitive dependency versions. Do not remove `npm audit --omit=dev --audit-level=moderate`.
+
+The October 2026 advisories are addressed by floors for `@modelcontextprotocol/sdk`, `handlebars`, `proxy-addr`, and `source-map-js`. The `braces` package has no fixed release as of 2026-10-09. The transitive dev-watcher chain `skybridge -> nodemon -> chokidar@3 -> braces` was being installed in production; the override sets `chokidar@4.0.3` so production packaging no longer needs `braces`. Chokidar v4 removes glob-pattern support, so this override is intentionally limited to the server build where the watcher is unused; verify the runtime smoke test whenever it changes.
+
+Any new advisory must be resolved or investigated without silently relaxing the dependency audit.

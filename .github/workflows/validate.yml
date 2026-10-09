@@ -125,6 +125,7 @@ jobs:
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Check Lexware MCP production dependencies
         run: |
           git clone https://github.com/marselsel/Lexware-MCP-Server.git upstream
